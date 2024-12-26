@@ -11,8 +11,8 @@ After=network.target
 ExecStart=/usr/bin/python3 /root/gh-proxy.py
 Restart=always
 User=root
-StandardOutput=null
-StandardError=null
+StandardOutput=journal
+StandardError=journal
 
 [Install]
 WantedBy=multi-user.target
@@ -20,6 +20,7 @@ WantedBy=multi-user.target
 sudo systemctl daemon-reload
 sudo systemctl enable gh-proxy
 sudo systemctl start gh-proxy
+journalctl -u gh-proxy.service -f
 """
 
 import re
